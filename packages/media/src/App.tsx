@@ -1,12 +1,13 @@
-import MediaPage from "./MediaPage";
 import "./App.css";
+import Widget from "./components/Widget";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h2>Core app</h2>
-        <MediaPage />
+        <h2>Media</h2>
+        <p>Own components:</p>
+        <Widget />
       </header>
     </div>
   );
