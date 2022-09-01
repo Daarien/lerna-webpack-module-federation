@@ -10,11 +10,7 @@ module.exports = {
     static: {
       directory: path.join(__dirname, "public"),
     },
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    },
     port: 3001,
-    open: true,
   },
   output: {
     publicPath: "auto",
@@ -49,6 +45,10 @@ module.exports = {
         "shared-context": {
           import: "shared-context",
           requiredVersion: require("../shared-context/package.json").version,
+        },
+        library: {
+          import: "library",
+          requiredVersion: require("../library/package.json").version,
         },
       },
     }),

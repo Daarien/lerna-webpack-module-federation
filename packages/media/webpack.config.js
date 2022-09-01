@@ -8,12 +8,16 @@ module.exports = {
   mode: "development",
   devServer: {
     static: {
-      directory: path.join(__dirname, "dist"),
+      directory: path.join(__dirname, "public"),
+    },
+    headers: {
+      "Access-Control-Allow-Origin": "*",
     },
     port: 3002,
   },
   output: {
     publicPath: "auto",
+    crossOriginLoading: "anonymous",
   },
   resolve: {
     extensions: [".jsx", ".js"],
@@ -33,6 +37,7 @@ module.exports = {
       filename: "remoteEntry.js",
       exposes: {
         "./Welcome": "./src/Welcome",
+        "./Widget": "./src/components/Widget",
       },
       shared: {
         react: {
@@ -46,6 +51,10 @@ module.exports = {
         "shared-context": {
           import: "shared-context",
           requiredVersion: require("../shared-context/package.json").version,
+        },
+        library: {
+          import: "library",
+          requiredVersion: require("../library/package.json").version,
         },
       },
     }),
