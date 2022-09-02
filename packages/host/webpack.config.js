@@ -20,6 +20,7 @@ module.exports = {
   },
   output: {
     publicPath: "auto",
+    crossOriginLoading: "anonymous",
   },
   resolve: {
     extensions: [".jsx", ".js", ".ts", ".tsx"],
@@ -36,8 +37,12 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       name: "host",
+      filename: "remoteEntry.js",
       remotes: {
         media: "media@http://localhost:3002/remoteEntry.js",
+      },
+      exposes: {
+        "./AppLayout": "./src/components/AppLayout",
       },
       shared: {
         react: {
