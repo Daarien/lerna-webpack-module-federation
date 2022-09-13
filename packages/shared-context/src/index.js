@@ -1,1 +1,1 @@
-export { default, Context } from "./ContextProvider";
+export { EventServiceProvider, useEventService } from "./EventServiceProvider";

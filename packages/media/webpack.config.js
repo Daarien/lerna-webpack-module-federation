@@ -1,7 +1,10 @@
+process.env.BABEL_ENV = "production";
+
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin =
   require("webpack").container.ModuleFederationPlugin;
 const path = require("path");
+const { node } = require("webpack");
 
 module.exports = {
   entry: "./src/index",

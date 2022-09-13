@@ -1,10 +1,18 @@
-import { useContext } from "react";
-import { Context } from "shared-context";
+import { useEffect } from "react";
+import { useEventService } from "shared-context";
 
-const Welcome = () => {
-  const { app } = useContext(Context);
+export default function Welcome() {
+  const EventService = useEventService();
 
-  return <p>This app is {app}</p>;
-};
+  useEffect(() => {
+    const unsubscribe = EventService.subscribe("boom", () => {
+      console.error("Boom!!!");
+    });
 
-export default Welcome;
+    setTimeout(() => {
+      unsubscribe();
+    }, 5000);
+  }, []);
+
+  return <p>This app is Welcome</p>;
+}
