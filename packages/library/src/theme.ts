@@ -1,12 +1,27 @@
-import { createTheme } from "@material-ui/core";
-import { orange } from "@material-ui/core/colors";
+import { createTheme } from "@material-ui/core/styles";
+import { orange, blue } from "@material-ui/core/colors";
+
+declare module "@material-ui/core/styles/createPalette" {
+  interface Palette {
+    status: {
+      dzen: string;
+      danger: string;
+    };
+  }
+  interface PaletteOptions {
+    status: {
+      dzen: string;
+      danger: string;
+    };
+  }
+}
 
 export default createTheme({
   shape: {
     borderRadius: 8,
   },
   palette: {
-    mode: "light",
+    type: "light",
     primary: {
       main: "#29a329",
     },
@@ -14,6 +29,7 @@ export default createTheme({
       main: "#a6a6a6",
     },
     status: {
+      dzen: blue[300],
       danger: orange[500],
     },
   },
