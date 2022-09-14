@@ -5,6 +5,7 @@ export default function Welcome() {
   const EventService = useEventService();
 
   useEffect(() => {
+    // @ts-ignore
     const unsubscribe = EventService.subscribe("boom", () => {
       console.error("Boom!!!");
     });

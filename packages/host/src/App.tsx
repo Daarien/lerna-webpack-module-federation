@@ -4,7 +4,9 @@ import { ThemeProvider, Button } from "library";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Header from "./components/Header/Header";
 
+// @ts-ignore
 const Welcome = lazy(() => import("media/Welcome"));
+// @ts-ignore
 const Widget = lazy(() => import("media/Widget"));
 
 export default function App() {

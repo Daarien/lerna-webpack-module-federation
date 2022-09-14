@@ -9,19 +9,22 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
+    "library": "*",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "shared-context": "*",
-    "library": "*"
+    "shared-context": "*"
   },
   "devDependencies": {
+    "@types/react": "^18.0.20",
     "babel-loader": "8.2.5",
+    "eslint": "^8.23.1",
     "eslint-config-react-app": "^7.0.1",
     "html-webpack-plugin": "5.5.0",
     "serve": "13.0.4",
+    "typescript": "^4.8.3",
     "webpack": "5.74.0",
     "webpack-cli": "4.10.0",
-    "webpack-dev-server": "4.10.1"
+    "webpack-dev-server": "^4.11.0"
   },
   "browserslist": [
     "last 2 version",

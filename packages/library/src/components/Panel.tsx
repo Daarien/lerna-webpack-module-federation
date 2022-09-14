@@ -7,9 +7,7 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid",
     borderRadius: theme.shape.borderRadius,
     borderColor:
-      theme.palette.mode === "light"
-        ? theme.palette.primary.main
-        : theme.palette.secondary.main,
+    theme.palette.primary.main
   },
 }));
 
@@ -19,10 +17,12 @@ export default function Panel({ children }) {
   const EventService = useEventService();
 
   useEffect(() => {
+    // @ts-ignore
     EventService.subscribe("watch", () => {
       console.info("Watching...");
     });
 
+    // @ts-ignore
     EventService.subscribe("boom", () => {
       console.error("Bah!!!");
     });

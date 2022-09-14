@@ -12,18 +12,21 @@ module.exports = {
     static: {
       directory: path.join(__dirname, "public"),
     },
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
     port: 3001,
   },
   output: {
     publicPath: "auto",
   },
   resolve: {
-    extensions: [".jsx", ".js"],
+    extensions: [".jsx", ".js", ".ts", ".tsx"],
   },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|mjs|jsx|ts|tsx)$/,
         loader: "babel-loader",
         exclude: /node_modules/,
       },

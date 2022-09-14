@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin =
   require("webpack").container.ModuleFederationPlugin;
 const path = require("path");
-const { node } = require("webpack");
 
 module.exports = {
   entry: "./src/index",
@@ -20,15 +19,14 @@ module.exports = {
   },
   output: {
     publicPath: "auto",
-    crossOriginLoading: "anonymous",
   },
   resolve: {
-    extensions: [".jsx", ".js"],
+    extensions: [".jsx", ".js", ".ts", ".tsx"],
   },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|mjs|jsx|ts|tsx)$/,
         loader: "babel-loader",
         exclude: /node_modules/,
       },

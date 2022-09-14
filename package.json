@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "devDependencies": {
+    "@types/react": "^18.0.20",
     "lerna": "^5.5.0"
   },
   "scripts": {

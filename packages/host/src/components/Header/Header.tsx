@@ -4,10 +4,12 @@ export default function Header() {
   const EventService = useEventService();
 
   function handleClick() {
+    // @ts-ignore
     EventService.dispatch("boom");
   }
 
   function handleClickInfo() {
+    // @ts-ignore
     EventService.getInfo();
   }
 
