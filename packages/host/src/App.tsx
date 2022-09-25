@@ -7,10 +7,6 @@ import Header from "./components/Header/Header";
 const Welcome = lazy(() => import("media/Welcome"));
 const Widget = lazy(() => import("media/Widget"));
 
-interface Props {
-  onMount: Fn;
-}
-
 export default function App() {
   return (
     <div>

@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin =
   require("webpack").container.ModuleFederationPlugin;
 const path = require("path");
+const { dependencies } = require("./package.json");
 
 module.exports = {
   entry: "./src/index",
@@ -43,11 +44,11 @@ module.exports = {
       shared: {
         react: {
           singleton: true,
-          requiredVersion: "17.0.2",
+          requiredVersion: dependencies["react"],
         },
         "react-dom": {
           singleton: true,
-          requiredVersion: "17.0.2",
+          requiredVersion: dependencies["react-dom"],
         },
         "shared-context": {
           import: "shared-context",
