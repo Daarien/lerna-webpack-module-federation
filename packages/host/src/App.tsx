@@ -14,6 +14,8 @@ interface AppProps extends StoreProps<"counter" | "timer"> {}
 @inject("counter", "timer")
 @observer
 class App extends Component<AppProps> {
+  static defaultProps = {} as StoreProps<"counter" | "timer">;
+
   interval: number | null;
   componentDidMount(): void {
     this.interval = window.setInterval(() => {

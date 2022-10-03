@@ -6,7 +6,11 @@
     "start": "webpack-cli serve",
     "build": "webpack --mode production",
     "serve": "serve dist -p 3001",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "tsc": "tsc",
+    "tsc:check": "tsc --noEmit true --declaration false --emitDeclarationOnly false",
+    "build:js": "BABEL_ENV=production babel src --extensions \".js,.jsx,.ts,.tsx\" --ignore \"src/**/*.d.ts\" -d lib -s",
+    "compile": "rm -rf lib && yarn build:js && yarn tsc"
   },
   "dependencies": {
     "library": "*",
@@ -17,6 +21,7 @@
     "shared-context": "*"
   },
   "devDependencies": {
+    "@babel/cli": "^7.19.3",
     "@types/react": "^18.0.21",
     "babel-loader": "8.2.5",
     "eslint": "^8.23.1",
