@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ES6",
     "lib": [
       "dom",
       "dom.iterable",
@@ -23,7 +23,8 @@
     "noEmit": false,
     "declaration": true,
     "emitDeclarationOnly": false,
-    "outDir": "lib"
+    "outDir": "lib",
+    "baseUrl": "src",
   },
   "include": [
     "src"

@@ -1,17 +1,18 @@
 {
   "name": "root",
   "private": true,
-  "packageManager": "yarn@3.2.3",
   "workspaces": [
     "packages/*"
   ],
   "devDependencies": {
-    "@types/react": "^18.0.21",
-    "lerna": "^5.5.0"
+    "@types/react": "^18.0.26",
+    "lerna": "^6.1.0"
   },
   "scripts": {
+    "bootstrap": "lerna bootstrap",
     "start:host": "lerna run start --scope=host",
     "start:media": "lerna run start --scope=media",
-    "start:all": "lerna run start --parallel --scope media --scope host"
+    "start:all": "lerna run start --parallel --scope media --scope host",
+    "build": "lerna run build"
   }
 }
