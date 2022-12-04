@@ -1,74 +1,20 @@
-import { Component, lazy, Suspense } from "react";
-import { inject, observer } from "mobx-react";
-import { EventServiceProvider } from "shared-context";
-import { ThemeProvider, Button } from "library";
-import ErrorBoundary from "./components/ErrorBoundary";
-import Header from "./components/Header/Header";
-import { StoreProps } from "./store";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "library";
+import Main from "./pages/Main";
+import Dogs from "./pages/Dogs";
+import AppLayout from "./components/AppLayout";
 
-const Welcome = lazy(() => import("media/Welcome"));
-const Widget = lazy(() => import("media/Widget"));
-
-interface AppProps extends StoreProps<"counter" | "timer"> {}
-
-@inject("counter", "timer")
-@observer
-class App extends Component<AppProps> {
-  static defaultProps = {} as StoreProps<"counter" | "timer">;
-
-  interval: number | null;
-  componentDidMount(): void {
-    this.interval = window.setInterval(() => {
-      this.props.timer.increase();
-    }, 1000);
-  }
-  componentWillUnmount(): void {
-    window.clearInterval(this.interval);
-  }
-  handleIncrement = () => {
-    this.props.counter?.increment();
-  };
-  handleReset = () => {
-    this.props.counter?.reset();
-  };
-
-  render() {
-    return (
-      <div>
-        <h1>Host</h1>
-        <div>
-          <EventServiceProvider>
-            <Header />
-            <p>
-              <Button onClick={this.handleIncrement}>Increment counter</Button>
-              <Button onClick={this.handleReset}>Reset counter</Button>
-            </p>
-            <hr />
-            <div>
-              <ErrorBoundary>
-                <Suspense fallback="...loading">
-                  <Welcome />
-                </Suspense>
-              </ErrorBoundary>
-            </div>
-            <ThemeProvider>
-              <h3> ThemeProvider</h3>
-              <div>
-                <Button>Button from library</Button>
-              </div>
-              <div>
-                <ErrorBoundary>
-                  <Suspense fallback="...loading">
-                    <Widget />
-                  </Suspense>
-                </ErrorBoundary>
-              </div>
-            </ThemeProvider>
-          </EventServiceProvider>
-        </div>
-      </div>
-    );
-  }
+export default function App() {
+  return (
+    <ThemeProvider>
+      <BrowserRouter>
+        <AppLayout>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/dogs" element={<Dogs />} />
+          </Routes>
+        </AppLayout>
+      </BrowserRouter>
+    </ThemeProvider>
+  );
 }
-
-export default App;

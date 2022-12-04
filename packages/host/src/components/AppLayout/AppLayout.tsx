@@ -3,7 +3,7 @@ import Header from "../Header";
 export default function AppLayout({ children }) {
   return (
     <div>
-      <Header>Layout header</Header>
+      <Header />
       <main>{children}</main>
     </div>
   );

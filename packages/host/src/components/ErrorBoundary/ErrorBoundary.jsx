@@ -12,14 +12,17 @@ export default class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
+      if (this.props.fallback) {
+        return this.props.fallback;
+      }
       const msg =
         typeof this.state.error === "object"
           ? this.state.error.toString()
           : null;
       return (
         <div>
-          <h4>Something went wrong.</h4>
-          <span>{msg}</span>
+          <h4>{this.props.subject}</h4>
+          {/* <span>{msg}</span> */}
         </div>
       );
     }
