@@ -14,3 +14,6 @@ export * from "./Tab";
 
 export { default as Box } from "./Box";
 export * from "./Box";
+
+export { default as Typography } from "./Typography";
+export * from "./Typography";

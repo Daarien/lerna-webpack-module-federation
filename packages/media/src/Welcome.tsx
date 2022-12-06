@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useEventService } from "shared-context";
+import { useEventService } from "@mf/shared";
 
 export default function Welcome() {
   const EventService = useEventService();

@@ -1,15 +1,15 @@
 export default class EventService {
-  static events = new Map();
+  static events = new Map<string, any>();
 
-  static dispatch(event) {
+  static dispatch(event: string) {
     const hasEvent = this.events.has(event);
     if (hasEvent) {
       const cbs = this.events.get(event);
-      cbs.forEach((callback) => callback());
+      cbs.forEach(callback => callback());
     }
   }
 
-  static subscribe(event, callback) {
+  static subscribe(event: string, callback: () => void) {
     const hasEvent = this.events.has(event);
     if (hasEvent) {
       const cbs = this.events.get(event);
@@ -18,12 +18,12 @@ export default class EventService {
       this.events.set(event, [callback]);
     }
 
-    const unsubscribe = () => {
+    const unsubscribe = (event: string) => {
       const cbs = this.events.get(event);
       if (cbs.length === 1) {
         this.events.delete(event);
       } else {
-        const fcbs = cbs.filter((cb) => cb !== callback);
+        const fcbs = cbs.filter(cb => cb !== callback);
         this.events.set(event, fcbs);
       }
     };

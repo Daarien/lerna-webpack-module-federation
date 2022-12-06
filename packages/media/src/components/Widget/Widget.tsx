@@ -1,4 +1,4 @@
-import { Panel } from "library";
+import { Panel } from "@mf/flamingo";
 
 export default function Widget() {
   return (

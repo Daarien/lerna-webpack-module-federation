@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "library";
+import { ThemeProvider } from "@mf/flamingo";
 import Main from "./pages/Main";
 import Dogs from "./pages/Dogs";
 import AppLayout from "./components/AppLayout";

@@ -1,5 +1,5 @@
 import { Component, lazy, Suspense } from "react";
-import { Frame } from "library";
+import { Frame } from "@mf/flamingo";
 import ErrorBoundary from "../components/ErrorBoundary";
 import Timer from "../components/Timer";
 import Events from "../components/Events";

@@ -1,6 +1,6 @@
-import { EventServiceProvider } from "shared-context";
+import { EventServiceProvider } from "@mf/shared";
 import { lazy, Suspense } from "react";
-import { ThemeProvider, Flex, Button } from "library";
+import { ThemeProvider, Flex, Button } from "@mf/flamingo";
 import Welcome from "./Welcome";
 import Widget from "./components/Widget";
 import AppLayout from "./components/AppLayout";

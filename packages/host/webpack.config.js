@@ -1,15 +1,22 @@
 process.env.BABEL_ENV = "production";
 
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 const ModuleFederationPlugin =
   require("webpack").container.ModuleFederationPlugin;
 const path = require("path");
 const { dependencies } = require("./package.json");
 
+const isDevelopment = process.env.NODE_ENV !== "production";
+console.log("🚀 ~ file: webpack.config.js:11 ~ isDevelopment", isDevelopment);
+
 module.exports = {
   entry: "./src/index",
   mode: "development",
   devServer: {
+    hot: true,
+    open: true,
     static: {
       directory: path.join(__dirname, "public"),
     },
@@ -53,12 +60,12 @@ module.exports = {
           singleton: true,
           requiredVersion: dependencies["react-dom"],
         },
-        "shared-context": {
-          import: "shared-context",
+        "@mf/shared": {
+          import: "@mf/shared",
           requiredVersion: require("../shared-context/package.json").version,
         },
-        library: {
-          import: "library",
+        "@mf/flamingo": {
+          import: "@mf/flamingo",
           requiredVersion: require("../library/package.json").version,
         },
       },
@@ -66,5 +73,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
-  ],
+    isDevelopment && new webpack.HotModuleReplacementPlugin(),
+  ].filter(Boolean),
 };

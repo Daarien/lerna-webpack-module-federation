@@ -1,5 +1,5 @@
 {
-  "name": "library",
+  "name": "@mf/flamingo",
   "version": "1.0.0",
   "private": true,
   "main": "./src/index.ts",
@@ -9,7 +9,7 @@
   "dependencies": {
     "@material-ui/core": "4.12.4",
     "clsx": "^1.2.1",
-    "shared-context": "*"
+    "@mf/shared": "*"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.5.12",

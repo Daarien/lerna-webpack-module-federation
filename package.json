@@ -6,12 +6,13 @@
   ],
   "devDependencies": {
     "@types/react": "^18.0.26",
-    "lerna": "^6.1.0"
+    "lerna": "^6.1.0",
+    "prettier": "^2.8.0"
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "start:host": "lerna run start --scope=host",
-    "start:media": "lerna run start --scope=media",
+    "start:host": "lerna run start --scope=@mf/main",
+    "start:media": "lerna run start --scope=@mf/media",
     "start:all": "lerna run start --parallel --scope media --scope host",
     "build": "lerna run build"
   }

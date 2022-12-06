@@ -1,5 +1,5 @@
 import { inject, observer } from "mobx-react";
-import { useEventService } from "shared-context";
+import { useEventService } from "@mf/shared";
 import type { StoreProps } from "../store";
 
 interface Props extends StoreProps<"counter"> {}

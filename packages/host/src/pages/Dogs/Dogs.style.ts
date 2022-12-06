@@ -1,4 +1,4 @@
-import { createStyles, Theme } from "library";
+import { createStyles, Theme } from "@mf/flamingo";
 
 export default (theme: Theme) =>
   createStyles({

@@ -53,12 +53,12 @@ module.exports = {
           singleton: true,
           requiredVersion: dependencies["react-dom"],
         },
-        "shared-context": {
-          import: "shared-context",
+        "@mf/shared": {
+          import: "@mf/shared",
           requiredVersion: require("../shared-context/package.json").version,
         },
-        library: {
-          import: "library",
+        "@mf/flamingo": {
+          import: "@mf/flamingo",
           requiredVersion: require("../library/package.json").version,
         },
       },

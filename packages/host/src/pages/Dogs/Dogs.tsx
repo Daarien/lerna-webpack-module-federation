@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { inject, observer } from "mobx-react";
-import { makeStyles } from "library";
+import { makeStyles } from "@mf/flamingo";
 // import store from "../../store/Dogs";
 import { StoreProps } from "../../store";
 import styles from "./Dogs.style";

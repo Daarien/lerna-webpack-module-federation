@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { inject, observer } from "mobx-react";
-import { EventServiceProvider } from "shared-context";
-import { Button } from "library";
+import { EventServiceProvider } from "@mf/shared";
+import { Button } from "@mf/flamingo";
 import type { StoreProps } from "store";
 
 interface Props extends StoreProps<"counter"> {}
