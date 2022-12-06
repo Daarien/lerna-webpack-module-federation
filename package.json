@@ -11,9 +11,9 @@
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "start:host": "lerna run start --scope=@mf/main",
+    "start:main": "lerna run start --scope=@mf/main",
     "start:media": "lerna run start --scope=@mf/media",
-    "start:all": "lerna run start --parallel --scope media --scope host",
+    "start:all": "lerna run start --parallel --scope=@mf/main --scope=@mf/media",
     "build": "lerna run build"
   }
 }

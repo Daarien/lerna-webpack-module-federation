@@ -2,14 +2,12 @@ process.env.BABEL_ENV = "production";
 
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 const ModuleFederationPlugin =
   require("webpack").container.ModuleFederationPlugin;
 const path = require("path");
 const { dependencies } = require("./package.json");
 
 const isDevelopment = process.env.NODE_ENV !== "production";
-console.log("🚀 ~ file: webpack.config.js:11 ~ isDevelopment", isDevelopment);
 
 module.exports = {
   entry: "./src/index",
@@ -62,11 +60,11 @@ module.exports = {
         },
         "@mf/shared": {
           import: "@mf/shared",
-          requiredVersion: require("../shared-context/package.json").version,
+          requiredVersion: require("../shared/package.json").version,
         },
         "@mf/flamingo": {
           import: "@mf/flamingo",
-          requiredVersion: require("../library/package.json").version,
+          requiredVersion: require("../flamingo/package.json").version,
         },
       },
     }),

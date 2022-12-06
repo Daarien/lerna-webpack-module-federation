@@ -55,11 +55,11 @@ module.exports = {
         },
         "@mf/shared": {
           import: "@mf/shared",
-          requiredVersion: require("../shared-context/package.json").version,
+          requiredVersion: require("../shared/package.json").version,
         },
         "@mf/flamingo": {
           import: "@mf/flamingo",
-          requiredVersion: require("../library/package.json").version,
+          requiredVersion: require("../flamingo/package.json").version,
         },
       },
     }),
