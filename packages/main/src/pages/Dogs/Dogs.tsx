@@ -1,8 +1,7 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { inject, observer } from "mobx-react";
-import { makeStyles } from "@mf/flamingo";
-// import store from "../../store/Dogs";
-import { StoreProps } from "../../store";
+import { List, ListItem, makeStyles } from "@mf/flamingo";
+import { StoreProps } from "store";
 import styles from "./Dogs.style";
 
 const useStyles = makeStyles(styles);
@@ -11,20 +10,34 @@ interface Props extends StoreProps<"dogs"> {}
 
 function Dogs({ dogs }: Props) {
   const classes = useStyles();
+
+  const [breeds, setBreeds] = useState<string[]>([]);
+
+  useEffect(() => {
+    const breeds = Object.keys(dogs.breeds);
+    setBreeds(breeds);
+  }, [dogs.breeds]);
+
   async function getAllBreeds() {
     dogs.getBreeds();
   }
-  useEffect(() => {
+
+  function handleClick() {
     getAllBreeds();
-  }, []);
+  }
+
   return (
     <div>
       <p>
-        <span className={classes.btn}>Button</span>
+        <span className={classes.btn} onClick={handleClick}>
+          Get dogs breeds
+        </span>
       </p>
-      {Object.keys(dogs.breeds).map((breed) => (
-        <span key={breed}>{breed}</span>
-      ))}
+      <List>
+        {breeds.map(breed => (
+          <ListItem key={breed}>{breed}</ListItem>
+        ))}
+      </List>
     </div>
   );
 }

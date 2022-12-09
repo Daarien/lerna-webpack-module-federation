@@ -13,6 +13,7 @@ export default function Navigation() {
     <nav>
       <Tabs value={pathname} onChange={handleChange}>
         <Tab value="/" label="Main" />
+        <Tab value="/mobx" label="MobX" />
         <Tab value="/dogs" label="Dogs" />
       </Tabs>
     </nav>

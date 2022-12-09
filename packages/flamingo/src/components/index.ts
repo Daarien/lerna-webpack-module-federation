@@ -2,9 +2,8 @@ export { default as Button } from "./Button";
 
 export { default as Flex } from "./Flex";
 
-export { default as Panel } from "./Panel";
-
 export { default as Frame } from "./Frame";
+export * from './Frame';
 
 export { default as Tabs } from "./Tabs";
 export * from "./Tabs";
@@ -17,3 +16,9 @@ export * from "./Box";
 
 export { default as Typography } from "./Typography";
 export * from "./Typography";
+
+export { default as List } from "./List";
+export * from "./List";
+
+export { default as ListItem } from "./ListItem";
+export * from "./ListItem";

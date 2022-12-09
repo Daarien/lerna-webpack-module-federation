@@ -7,11 +7,15 @@ const useStyles = makeStyles({
   }
 })
 
-export default function Header() {
+interface HeaderProps {
+  title: string;
+}
+
+export default function Header({ title }: HeaderProps) {
   const classes = useStyles();
   return (
     <Box display="flex">
-      <Typography variant="h4" className={classes.header}>Host</Typography>
+      <Typography variant="h4" className={classes.header}>{title}</Typography>
       <Navigation />
     </Box>
   );

@@ -1,4 +1,4 @@
-import { observable, action } from "mobx";
+import { observable } from "mobx";
 import DogService, { Breeds } from "@mf/core/services/DogService";
 
 export class Dogs {

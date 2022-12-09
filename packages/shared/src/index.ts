@@ -1,2 +1,2 @@
-export { default as EventService } from "./EventService";
-export { EventServiceProvider, useEventService } from "./EventServiceProvider";
+// export { default } from "./EventsWatcher";
+export {}

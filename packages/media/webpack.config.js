@@ -4,19 +4,21 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin =
   require("webpack").container.ModuleFederationPlugin;
 const path = require("path");
-const { dependencies } = require("./package.json");
+const { dependencies } = require("../../package.json");
 
 module.exports = {
   entry: "./src/index",
   mode: "development",
   devServer: {
+    hot: true,
+    open: true,
+    port: 3002,
     static: {
       directory: path.join(__dirname, "public"),
     },
     headers: {
       "Access-Control-Allow-Origin": "*",
     },
-    port: 3002,
   },
   output: {
     publicPath: "auto",
@@ -31,6 +33,10 @@ module.exports = {
         loader: "babel-loader",
         exclude: /node_modules/,
       },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
   plugins: [
@@ -38,11 +44,12 @@ module.exports = {
       name: "media",
       filename: "remoteEntry.js",
       remotes: {
-        host: "host@http://localhost:3001/remoteEntry.js",
+        main: "main@http://localhost:3001/remoteEntry.js",
       },
       exposes: {
-        "./Welcome": "./src/Welcome",
-        "./Widget": "./src/components/Widget",
+        "./WelcomeWidget": "./src/components/WelcomeWidget",
+        "./EventsWidget": "./src/components/EventsWidget",
+        "./DirectEvents": "./src/components/DirectEvents",
       },
       shared: {
         react: {
@@ -53,9 +60,9 @@ module.exports = {
           singleton: true,
           requiredVersion: dependencies["react-dom"],
         },
-        "@mf/shared": {
-          import: "@mf/shared",
-          requiredVersion: require("../shared/package.json").version,
+        "@mf/core": {
+          import: "@mf/core",
+          requiredVersion: require("../core/package.json").version,
         },
         "@mf/flamingo": {
           import: "@mf/flamingo",

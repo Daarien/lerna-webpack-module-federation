@@ -2,8 +2,36 @@
   "name": "@mf/shared",
   "version": "1.0.0",
   "private": true,
-  "main": "./src/index.ts",
+  "main": "./src/index.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "compile:types": "tsc && tsc-alias",
+    "compile": "cross-env BABEL_ENV=production babel src --extensions '.js,.ts,.tsx' --out-dir 'lib' --source-maps  --copy-files",
+    "build:copy": "cp package.json ./lib",
+    "build:babel": "yarn clean && yarn compile && yarn compile:types && yarn build:copy",
+    "build:webpack": "cross-env BABEL_ENV=production yarn clean && webpack --mode production",
+    "start": "webpack-cli serve",
+    "serve": "serve lib"
+  },
   "peerDependencies": {
+    "@mf/core": "*",
+    "@mf/flamingo": "*",
     "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@mf/core": "*",
+    "@mf/flamingo": "*",
+    "@babel/cli": "^7.19.3",
+    "babel-loader": "^9.1.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "eslint-config-react-app": "^7.0.1",
+    "express": "^4.18.2",
+    "serve": "^14.1.2",
+    "tsc-alias": "^1.8.2",
+    "typescript": "^4.9.4",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
   }
 }

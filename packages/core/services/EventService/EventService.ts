@@ -1,7 +1,11 @@
-export default class EventService {
-  static events = new Map<string, any>();
+type Event = "watch" | "boom";
 
-  static dispatch(event: string) {
+type Fn = () => void;
+
+class EventService {
+  private static events = new Map<Event, Array<Fn>>();
+
+  static dispatch(event: Event) {
     const hasEvent = this.events.has(event);
     if (hasEvent) {
       const cbs = this.events.get(event);
@@ -9,7 +13,7 @@ export default class EventService {
     }
   }
 
-  static subscribe(event: string, callback: () => void) {
+  static subscribe(event: Event, callback: Fn) {
     const hasEvent = this.events.has(event);
     if (hasEvent) {
       const cbs = this.events.get(event);
@@ -18,7 +22,7 @@ export default class EventService {
       this.events.set(event, [callback]);
     }
 
-    const unsubscribe = (event: string) => {
+    const unsubscribe = () => {
       const cbs = this.events.get(event);
       if (cbs.length === 1) {
         this.events.delete(event);
@@ -36,3 +40,5 @@ export default class EventService {
     });
   }
 }
+
+export default EventService;

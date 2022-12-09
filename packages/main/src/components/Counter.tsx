@@ -1,34 +1,48 @@
 import { inject, observer } from "mobx-react";
-import { useEventService } from "@mf/shared";
-import type { StoreProps } from "../store";
+import { Box, Button, makeStyles } from "@mf/flamingo";
+import type { StoreProps } from "store";
+
+const useStyles = makeStyles({
+  btn: {
+    marginRight: 16,
+  },
+});
 
 interface Props extends StoreProps<"counter"> {}
 
-function Header({ counter }: Props) {
-  const EventService = useEventService();
+function Counter({ counter }: Props) {
+  const classes = useStyles();
 
-  function handleClick() {
-    // @ts-ignore
-    EventService.dispatch("boom");
+  function handleIncrement() {
+    counter.increment();
   }
-
-  function handleClickInfo() {
-    // @ts-ignore
-    EventService.getInfo();
+  function handleReset() {
+    counter.reset();
   }
 
   return (
     <div>
-      <button onClick={handleClick}>Dispatch events</button>
-      <button onClick={handleClickInfo}>Show events events</button>
-      <div>
-        <h3>Counter</h3>
-        <p>Current count: {counter.count}</p>
-      </div>
+      <p>
+        <Button onClick={handleIncrement} className={classes.btn}>
+          Increment counter
+        </Button>
+        <Button onClick={handleReset}>Reset counter</Button>
+      </p>
+      <p>
+        <Watcher />
+      </p>
     </div>
   );
 }
 
-Header.defaultProps = {} as StoreProps<"counter">;
+Counter.defaultProps = {} as StoreProps<"counter">;
 
-export default inject("counter")(observer(Header));
+export default inject("counter")(Counter);
+
+function Watch({ counter }: StoreProps<"counter">) {
+  return <Box component="span">{counter.count}</Box>;
+}
+
+Watch.defaultProps = {} as StoreProps<"counter">;
+
+const Watcher = inject("counter")(observer(Watch));

@@ -1,14 +1,10 @@
 import { observable } from "mobx";
 
 export class Timer {
-  @observable secondsPassed = 0;
+  @observable time = Date.now();
 
   increase() {
-    this.secondsPassed += 1;
-  }
-
-  reset() {
-    this.secondsPassed = 0;
+    this.time += 1000;
   }
 }
 

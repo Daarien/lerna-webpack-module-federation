@@ -1,6 +1,6 @@
-import { Counter } from "./Counter";
-import { Dogs } from "./Dogs";
-import { Timer } from "./Timer";
+import { Counter } from "./counter";
+import { Dogs } from "./dogs";
+import { Timer } from "./timer";
 
 type Stores = {
   counter: Counter;

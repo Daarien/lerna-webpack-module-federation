@@ -1,40 +1,52 @@
-import { Component, lazy, Suspense } from "react";
-import { Frame } from "@mf/flamingo";
-import ErrorBoundary from "../components/ErrorBoundary";
-import Timer from "../components/Timer";
-import Events from "../components/Events";
+import { Component, lazy } from "react";
+import { Box, Frame } from "@mf/flamingo";
+import { EventServiceProvider, SuspendedErrorBoundary } from "@mf/core";
+import Events from "components/Events";
 
-const Welcome = lazy(() => import("media/Welcome"));
-const Widget = lazy(() => import("media/Widget"));
+const WelcomeWidget = lazy(() => import("media/WelcomeWidget"));
+const EventsWidget = lazy(() => import("media/EventsWidget"));
+const DirectEvents = lazy(() => import("media/DirectEvents"));
+// const EventsWatcher = lazy(() => import("../../../shared/src/EventsWatcher"));
+const EventsWatcher = lazy(() => import("shared/EventsWatcher"));
 
 class Main extends Component {
   render() {
     return (
-      <div>
-        <Timer />
+      <EventServiceProvider>
+        <div>
+          <section>
+            <SuspendedErrorBoundary subject="You're not wellcome">
+              <WelcomeWidget project="Main" />
+            </SuspendedErrorBoundary>
+          </section>
 
-        <hr />
+          <Box mt={3}>
+            <SuspendedErrorBoundary subject="EventsWidget failed!">
+              <EventsWidget />
+            </SuspendedErrorBoundary>
+          </Box>
 
-        <Events />
+          <Box mt={3}>
+            <SuspendedErrorBoundary subject="DirectEvents failed!">
+              <DirectEvents />
+            </SuspendedErrorBoundary>
+          </Box>
 
-        <hr />
+          <section>
+            <Frame mt={3}>
+              <Events />
+            </Frame>
+          </section>
 
-        <ErrorBoundary subject="You're not wellcome">
-          <Suspense fallback="...loading">
-            <Welcome />
-          </Suspense>
-        </ErrorBoundary>
-
-        <hr />
-
-        <Frame>
-          <ErrorBoundary subject="Widget not responding">
-            <Suspense fallback="...loading">
-              <Widget />
-            </Suspense>
-          </ErrorBoundary>
-        </Frame>
-      </div>
+          <section>
+           <Frame mt={3}>
+             <SuspendedErrorBoundary subject="EventsWatcher failed">
+               <EventsWatcher />
+             </SuspendedErrorBoundary>
+           </Frame>
+          </section>
+        </div>
+      </EventServiceProvider>
     );
   }
 }

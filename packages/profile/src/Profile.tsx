@@ -1,4 +1,4 @@
-import { EventService } from "@mf/shared";
+import { EventService } from "@mf/core";
 
 export default function Profile() {
   return (

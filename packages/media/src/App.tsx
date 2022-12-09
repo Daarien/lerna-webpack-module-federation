@@ -1,46 +1,25 @@
-import { EventServiceProvider } from "@mf/shared";
-import { lazy, Suspense } from "react";
-import { ThemeProvider, Flex, Button } from "@mf/flamingo";
-import Welcome from "./Welcome";
-import Widget from "./components/Widget";
+import { lazy } from "react";
+import { EventServiceProvider, SuspendedErrorBoundary } from "@mf/core";
+import { Flex, ThemeProvider } from "@mf/flamingo";
+import WelcomeWidget from "./components/WelcomeWidget";
+import EventsWidget from "./components/EventsWidget";
 import AppLayout from "./components/AppLayout";
 
-// @@ts-expect-error
-// const AppLayout = lazy(() => import("host/AppLayout"));
+// const AppLayout = lazy(() => import("main/AppLayout"));
 
 export default function App() {
   return (
     <EventServiceProvider>
-      <div>
-        <h1>Media</h1>
-        <div>
-          <Welcome />
-        </div>
-        <div>
-          <ThemeProvider>
-            <h4>ThemeProvider</h4>
-            <Button>Button</Button>
-            <div>
-              <Widget />
-            </div>
-            <Suspense fallback="...loading">
-              <AppLayout>
-                <h4>ThemeProvider</h4>
-                <Button>Button</Button>
-                <div>
-                  <Widget />
-                </div>
-              </AppLayout>
-            </Suspense>
-          </ThemeProvider>
-        </div>
-        <div>
-          <Flex>
-            <span>Flex</span>
-            <span>Box</span>
-          </Flex>
-        </div>
-      </div>
+      <ThemeProvider>
+        <SuspendedErrorBoundary subject="AppLayout failed">
+          <AppLayout title="Media">
+            <Flex direction="column">
+              <WelcomeWidget project="Media" />
+              <EventsWidget className="mt-3" />
+            </Flex>
+          </AppLayout>
+        </SuspendedErrorBoundary>
+      </ThemeProvider>
     </EventServiceProvider>
   );
 }

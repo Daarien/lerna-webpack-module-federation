@@ -1,3 +1,10 @@
-export default function AppLayout({ children }) {
-  return <div>{children}</div>;
+import { Typography } from "@mf/flamingo";
+
+export default function AppLayout({ title, children }) {
+  return (
+    <div>
+      <Typography variant="h4">{title}</Typography>
+      <main>{children}</main>
+    </div>
+  );
 }

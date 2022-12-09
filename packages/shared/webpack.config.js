@@ -1,32 +1,22 @@
 process.env.BABEL_ENV = "production";
 
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin =
   require("webpack").container.ModuleFederationPlugin;
 const path = require("path");
 const { dependencies } = require("../../package.json");
 
-// const isDevelopment = process.env.NODE_ENV !== "production";
-
 module.exports = {
-  entry: "./src/index",
   mode: "development",
   devServer: {
-    hot: true,
-    open: true,
-    historyApiFallback: true,
-    static: {
-      directory: path.join(__dirname, "public"),
-    },
+    port: 3003,
     headers: {
       "Access-Control-Allow-Origin": "*",
     },
-    port: 3001,
+    static: {
+      directory: path.join(__dirname, "dist"),
+    },
   },
-  output: {
-    publicPath: "auto",
-    crossOriginLoading: "anonymous",
-  },
+  target: 'web',
   resolve: {
     extensions: [".jsx", ".js", ".ts", ".tsx"],
   },
@@ -37,25 +27,26 @@ module.exports = {
         loader: "babel-loader",
         exclude: /node_modules/,
       },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "host",
+      name: "shared",
       filename: "remoteEntry.js",
-      remotes: {
-        media: "media@http://localhost:3002/remoteEntry.js",
-        shared: "shared@http://localhost:3003/remoteEntry.js",
-      },
+      library: { type: 'var', name: 'shared' },
       exposes: {
-        "./AppLayout": "./src/components/AppLayout",
+        "./EventsWatcher": "./src/EventsWatcher",
       },
       shared: {
         react: {
           singleton: true,
           requiredVersion: dependencies["react"],
         },
-        "react-dom": {
+        'react-dom': {
           singleton: true,
           requiredVersion: dependencies["react-dom"],
         },
@@ -69,8 +60,5 @@ module.exports = {
         },
       },
     }),
-    new HtmlWebpackPlugin({
-      template: "./public/index.html",
-    }),
-  ].filter(Boolean),
+  ],
 };
