@@ -47,9 +47,6 @@ module.exports = {
         media: "media@http://localhost:3002/remoteEntry.js",
         shared: "shared@http://localhost:3003/remoteEntry.js",
       },
-      exposes: {
-        "./AppLayout": "./src/components/AppLayout",
-      },
       shared: {
         react: {
           singleton: true,

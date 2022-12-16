@@ -1,7 +1,12 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { Tabs, Tab } from "@mf/flamingo";
+import type { NavigationScheme } from "../NavigationProvider";
 
-export default function Navigation() {
+export interface NavigationProps {
+  scheme: NavigationScheme;
+}
+
+export default function Navigation({ scheme }: NavigationProps) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -12,9 +17,9 @@ export default function Navigation() {
   return (
     <nav>
       <Tabs value={pathname} onChange={handleChange}>
-        <Tab value="/" label="Main" />
-        <Tab value="/mobx" label="MobX" />
-        <Tab value="/dogs" label="Dogs" />
+        {scheme.map(tab => (
+          <Tab value={tab.path} label={tab.label} />
+        ))}
       </Tabs>
     </nav>
   );

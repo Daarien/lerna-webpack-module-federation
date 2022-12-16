@@ -43,9 +43,7 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "media",
       filename: "remoteEntry.js",
-      remotes: {
-        main: "main@http://localhost:3001/remoteEntry.js",
-      },
+      
       exposes: {
         "./WelcomeWidget": "./src/components/WelcomeWidget",
         "./EventsWidget": "./src/components/EventsWidget",

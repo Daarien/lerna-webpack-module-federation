@@ -1,9 +1,8 @@
 import { useEffect } from "react";
-import { useEventService } from "@mf/core";
+import { EventService } from "@mf/core";
 import { Box } from '@mf/flamingo';
 
 export default function EventsWatcher() {
-  const EventService = useEventService();
 
   useEffect(() => {
     EventService.subscribe("boom", () => {
